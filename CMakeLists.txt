@@ -14,6 +14,7 @@ project(
 )
 
 add_executable(randomTreeProject
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/data-structure/node.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/data-structure/tree.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp"
 )
