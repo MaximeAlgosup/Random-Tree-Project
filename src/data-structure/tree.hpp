@@ -72,8 +72,4 @@ public:
     */
     void display(const char *filename) const;
 
-    /*!
-        \brief Destructor
-    */
-    ~Tree();
 };

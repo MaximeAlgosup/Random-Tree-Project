@@ -132,7 +132,3 @@ void Tree::display(const char *filename) const {
         file.close();
     }
 }
-
-Tree::~Tree(){
-    delete this->root;
-}
