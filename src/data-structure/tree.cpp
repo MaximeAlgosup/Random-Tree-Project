@@ -126,9 +126,7 @@ void Tree::display(const char *filename) const {
     ofstream file;
     file.open(filename);
     if(file.is_open()){
-        file << "digraph G {" << endl;
         this->root->display();
-        file << "}" << endl;
         file.close();
     }
 }
