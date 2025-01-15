@@ -4,10 +4,12 @@
     \author Mathias GAGNEPAIN, Maxime Carbon
 */
 #pragma once
+#include <string>
 
 class Node
 {
 private:
+    std::string name;
     int value;
     Node *left;
     Node *right;
@@ -17,14 +19,21 @@ public:
     /*!
         \brief Constructor
         \param value The value of the node
+        \param name The name of the node
     */
-    Node(int value);
+    Node(int value, std::string name);
 
     /*!
         \brief Getter for the value
         \return The value of the node
     */
-    int getValue() const;
+    int getData() const;
+
+    /*!
+        \brief Getter for the name
+        \return The name of the node
+    */
+    std::string getName() const;
 
     /*!
         \brief Setter for the value
@@ -32,6 +41,21 @@ public:
         \return True if the value has been set, false otherwise
     */
     bool setValue(int value);
+
+    /*!
+        \brief Setter for the name
+        \param name The new name of the node
+        \return True if the name has been set, false otherwise
+    */
+    bool setValue(std::string name);
+
+    /*!
+        \brief Setter for the value and the name
+        \param value The new value of the node
+        \param name The new name of the node
+        \return True if the value and the name have been set, false otherwise
+    */
+    bool setValue(int value, std::string name);
 
     /*!
         \brief Getter for the left child

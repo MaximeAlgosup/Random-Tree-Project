@@ -7,6 +7,7 @@
 #pragma once
 
 #include "node.hpp"
+#include <string>
 
 class Tree
 {
@@ -26,8 +27,9 @@ public:
     /*!
         \brief Constructor
         \param value The value of the root node
+        \param name The name of the root node
     */
-    Tree(int value);
+    Tree(int value, std::string name);
 
     /*!
         \brief Destructor
@@ -43,9 +45,10 @@ public:
     /*!
         \brief Insert a new node in the tree
         \param value The value of the new node
+        \param name The name of the new node
         \return True if the node has been inserted, false otherwise
     */
-    bool insert(int value);
+    bool insert(int value, std::string name);
 
     /*!
         \brief Search a node in the tree
