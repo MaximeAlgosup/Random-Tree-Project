@@ -17,9 +17,14 @@ int main()
 {
     char option;
 
+    Tree* treeRank = nullptr;
+    Tree* treeVids = nullptr;
+    Tree* treeViews = nullptr;
     while (true)
     {
+        cout << "------------------------------------------" << endl;
         cout << "Welcome to the Actress Binary Search Tree!" << endl;
+        cout << "------------------------------------------" << endl;
         cout << "Select an option:" << endl;
         cout << "1. Print data set" << endl;
         cout << "2. Sort by rank" << endl;
@@ -28,19 +33,22 @@ int main()
         cout << "5. Search by rank" << endl;
         cout << "6. Search by number of videos" << endl;
         cout << "7. Search by number of views" << endl;
-        cout << "8. Remove by name" << endl;
-        cout << "9. Remove by rank" << endl;
+        cout << "8. Remove by rank" << endl;
+        cout << "9. Remove by number of videos" << endl;
+        cout << "10. Remove by number of views" << endl;
         cout << "q. Exit" << endl;
+        cout << "------------------------------------------" << endl;
         cout << "Enter an option: ";
         cin >> option;
         cin.ignore();
+        cout << "------------------------------------------" << endl;
 
         string row;
         ifstream input(DATA_SET_FILE);
         string separator = ",";
         switch (option)
         {
-            case '1': {
+            case 1: {
                 cout << "List Actress: " << endl;
                 
                 ifstream input(DATA_SET_FILE);  // Moved inside the block
@@ -68,7 +76,6 @@ int main()
                 }
 
                 bool firstLine = true;
-                Tree* tree = nullptr;
                 for (string line; getline(input, line);)
                 {
                     size_t pos = 0;
@@ -77,7 +84,7 @@ int main()
                     string nodeName;
                     int nodeRank;
                     int nodevideoNb;
-                    unsigned long nodeviews;
+                    int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
                     {
@@ -105,14 +112,13 @@ int main()
 
                     if (firstLine)
                     {
-                        tree = new Tree(nodeRank, nodeName);
+                        treeRank = new Tree(nodeRank, nodeName);
                         firstLine = false;
                     } else {
-                        tree->insert(nodeRank, nodeName);
+                        treeRank->insert(nodeRank, nodeName);
                     }
                 }
-                tree->display();
-                delete tree;
+                treeRank->display();
                 break;
             }
             case '3': {
@@ -126,7 +132,6 @@ int main()
                 }
 
                 bool firstLine = true;
-                Tree* tree = nullptr;
                 for (string line; getline(input, line);)
                 {
                     size_t pos = 0;
@@ -135,7 +140,7 @@ int main()
                     string nodeName;
                     int nodeRank;
                     int nodevideoNb;
-                    unsigned long nodeviews;
+                    int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
                     {
@@ -163,14 +168,13 @@ int main()
 
                     if (firstLine)
                     {
-                        tree = new Tree(nodevideoNb, nodeName);
+                        treeVids = new Tree(nodevideoNb, nodeName);
                         firstLine = false;
                     } else {
-                        tree->insert(nodevideoNb, nodeName);
+                        treeVids->insert(nodevideoNb, nodeName);
                     }
                 }
-                tree->display();
-                delete tree;
+                treeVids->display();
                 break;
             }
             case '4': {
@@ -184,7 +188,6 @@ int main()
                 }
 
                 bool firstLine = true;
-                Tree* tree = nullptr;
                 for (string line; getline(input, line);)
                 {
                     size_t pos = 0;
@@ -193,7 +196,7 @@ int main()
                     string nodeName;
                     int nodeRank;
                     int nodevideoNb;
-                    unsigned long nodeviews;
+                    int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
                     {
@@ -221,14 +224,97 @@ int main()
 
                     if (firstLine)
                     {
-                        tree = new Tree(nodeviews, nodeName);
+                        treeVids = new Tree(nodeviews, nodeName);
                         firstLine = false;
                     } else {
-                        tree->insert(nodeviews, nodeName);
+                        treeVids->insert(nodeviews, nodeName);
                     }
                 }
-                tree->display();
-                delete tree;
+                treeVids->display();
+                break;
+            }
+            case '5': {
+                int rank;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a rank: ";
+                cin >> rank;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if(treeRank->search(rank)!= NULL) {
+                    cout << "Actress found: " << treeRank->search(rank)->getName() << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
+                break;
+            }
+            case '6': {
+                int videoNb;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a number of video: ";
+                cin >> videoNb;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if(treeVids->search(videoNb) != NULL) {
+                    cout << "Actress found: " << treeVids->search(videoNb)->getName() << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
+                break;
+            }
+            case '7': {
+                int viewNb;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a number of views: ";
+                cin >> viewNb;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if (treeViews->search(viewNb)!= NULL) {
+                    cout << "Actress found: " << treeViews->search(viewNb)->getName() << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
+                break;
+            }
+            case '8': {
+                int rank;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a rank: ";
+                cin >> rank;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if(treeRank->remove(rank)) {
+                    cout << "Actress removed" << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
+                break;
+            }
+            case '9': {
+                int videoNb;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a number of video: ";
+                cin >> videoNb;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if(treeVids->remove(videoNb)) {
+                    cout << "Actress removed" << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
+                break;
+            }
+            case '10': {
+                int viewNb;
+                cout << "------------------------------------------" << endl;
+                cout << "Enter a number of views: ";
+                cin >> viewNb;
+                cin.ignore();
+                cout << "------------------------------------------" << endl;
+                if(treeViews->remove(viewNb)) {
+                    cout << "Actress removed" << endl;
+                } else {
+                    cout << "Actress not found" << endl;
+                }
                 break;
             }
             case 'q': {
