@@ -1,7 +1,7 @@
 /*!
     \file node.cpp
     \brief Node class implementation
-    \author Mathias GAGNEPAIN, Maxime Carbon
+    \author Mathias GAGNEPAIN, Maxime CARBON
 */
 
 #include "node.hpp"

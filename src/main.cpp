@@ -1,7 +1,7 @@
 /*!
     \file main.cpp
     \brief Main file
-    \author Mathias GAGNEPAIN, Maxime Carbon
+    \author Mathias GAGNEPAIN, Maxime CARBON
 */
 
 #include <iostream>
