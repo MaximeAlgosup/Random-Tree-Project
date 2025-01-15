@@ -26,6 +26,8 @@ private:
     */
     Node *treeRemovePartial(Node *node, int value);
 
+    bool treeInsertPartial(Node *node, int value, std::string name);
+
 public:
     /*!
         \brief Constructor to initialize the tree with a root node.
@@ -92,4 +94,10 @@ public:
         \param filename The name of the output file.
     */
     void display(const char *filename) const;
+
+    /*!
+        \brief Displays the tree structure in order.
+        \param node The root node of the subtree to display.
+    */
+    void displayInOrder(Node *node) const;
 };

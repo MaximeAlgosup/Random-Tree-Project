@@ -83,8 +83,6 @@ int main()
                     string token;
                     string nodeName;
                     int nodeRank;
-                    int nodevideoNb;
-                    int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
                     {
@@ -96,12 +94,6 @@ int main()
                             break;
                         case 1:
                             nodeRank = stoi(token);
-                            break;
-                        case 2:
-                            nodevideoNb = stoi(token);
-                            break;
-                        case 3:
-                            nodeviews = stoul(token);
                             break;
                         default:
                             break;
@@ -118,7 +110,7 @@ int main()
                         treeRank->insert(nodeRank, nodeName);
                     }
                 }
-                treeRank->display();
+                treeRank->displayInOrder(treeRank->getRoot());
                 break;
             }
             case '3': {
@@ -138,9 +130,7 @@ int main()
                     size_t tokenNb = 0;
                     string token;
                     string nodeName;
-                    int nodeRank;
                     int nodevideoNb;
-                    int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
                     {
@@ -150,14 +140,8 @@ int main()
                         case 0:
                             nodeName = token;
                             break;
-                        case 1:
-                            nodeRank = stoi(token);
-                            break;
                         case 2:
                             nodevideoNb = stoi(token);
-                            break;
-                        case 3:
-                            nodeviews = stoul(token);
                             break;
                         default:
                             break;
@@ -174,7 +158,7 @@ int main()
                         treeVids->insert(nodevideoNb, nodeName);
                     }
                 }
-                treeVids->display();
+                treeVids->displayInOrder(treeVids->getRoot());
                 break;
             }
             case '4': {
@@ -194,8 +178,6 @@ int main()
                     size_t tokenNb = 0;
                     string token;
                     string nodeName;
-                    int nodeRank;
-                    int nodevideoNb;
                     int nodeviews;
 
                     while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
@@ -206,14 +188,8 @@ int main()
                         case 0:
                             nodeName = token;
                             break;
-                        case 1:
-                            nodeRank = stoi(token);
-                            break;
-                        case 2:
-                            nodevideoNb = stoi(token);
-                            break;
                         case 3:
-                            nodeviews = stoul(token);
+                            nodeviews = stoi(token.substr(0, 7)); // number are cutted beacuse we store int only
                             break;
                         default:
                             break;
@@ -230,7 +206,7 @@ int main()
                         treeVids->insert(nodeviews, nodeName);
                     }
                 }
-                treeVids->display();
+                treeVids->displayInOrder(treeVids->getRoot());
                 break;
             }
             case '5': {

@@ -26,35 +26,34 @@ Node *Tree::getRoot() const
     return this->root;
 }
 
+bool Tree::treeInsertPartial(Node *node, int value, std::string name){
+
+    if(value < node->getData()){
+        if(node->getLeft() == NULL){
+            node->setLeft(new Node(value, name));
+            return true;
+        }
+        return treeInsertPartial(node->getLeft(), value, name);
+    }else if(value > node->getData()){
+        if(node->getRight() == NULL){
+            node->setRight(new Node(value, name));
+            return true;
+        }
+        return treeInsertPartial(node->getRight(), value, name);
+    }else{
+        return false;
+    }
+}
+
+
 bool Tree::insert(int value, string name)
 {
     Node *node = this->root;
-    while (node != NULL)
-    {
-        if (value < node->getData())
-        {
-            if (node->getLeft() == NULL)
-            {
-                node->setLeft(new Node(value, name));
-                return true;
-            }
-            node = node->getLeft();
-        }
-        else if (value >= node->getData())
-        {
-            if (node->getRight() == NULL)
-            {
-                node->setRight(new Node(value, name));
-                return true;
-            }
-            node = node->getRight();
-        }
-        else
-        {
-            return false;
-        }
+    if(node == NULL){
+        this->root = new Node(value, name);
+        return true;
     }
-    return false;
+    return treeInsertPartial(node, value, name);
 }
 
 
@@ -166,5 +165,15 @@ void Tree::display(const char *filename) const {
     if(file.is_open()){
         this->root->display();
         file.close();
+    }
+}
+
+void Tree::displayInOrder(Node *node) const
+{
+    if (node != NULL)
+    {
+        displayInOrder(node->getLeft());
+        cout << node->getData() << ", " << node->getName() << endl;
+        displayInOrder(node->getRight());
     }
 }

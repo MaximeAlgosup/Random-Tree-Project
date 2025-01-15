@@ -48,9 +48,6 @@ Node *Node::getLeft() const{
 }
 
 bool Node::setLeft(Node *left){
-    if(left->getData() < this->value){
-        return false;
-    }
     this->left = left;
     return true;
 }
@@ -60,17 +57,13 @@ Node *Node::getRight() const{
 }
 
 bool Node::setRight(Node *right){
-    if(right->getData() > this->value){
-        return false;
-    }
     this->right = right;
     return true;
 }
 
 void Node::display() const
 {
-    cout << this->value << endl;
-    cout << this->name << endl;
+    cout << this->value << ", " << this->name << endl;
     if (this->left != NULL)
     {
         cout << "Left: ";
