@@ -115,6 +115,122 @@ int main()
                 delete tree;
                 break;
             }
+            case '3': {
+                cout << "Actress sorted by videos: " << endl;
+                
+                ifstream input(DATA_SET_FILE);  // Moved inside the block
+                if (!input)
+                {
+                    cout << "Error: file \'" << DATA_SET_FILE << "\' doesn't exist or is not accessible" << endl;
+                    return 1;
+                }
+
+                bool firstLine = true;
+                Tree* tree = nullptr;
+                for (string line; getline(input, line);)
+                {
+                    size_t pos = 0;
+                    size_t tokenNb = 0;
+                    string token;
+                    string nodeName;
+                    int nodeRank;
+                    int nodevideoNb;
+                    unsigned long nodeviews;
+
+                    while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
+                    {
+                        token = line.substr(0, pos);
+                        switch (tokenNb)
+                        {
+                        case 0:
+                            nodeName = token;
+                            break;
+                        case 1:
+                            nodeRank = stoi(token);
+                            break;
+                        case 2:
+                            nodevideoNb = stoi(token);
+                            break;
+                        case 3:
+                            nodeviews = stoul(token);
+                            break;
+                        default:
+                            break;
+                        }
+                        line.erase(0, pos + 1);
+                        ++tokenNb;
+                    }
+
+                    if (firstLine)
+                    {
+                        tree = new Tree(nodevideoNb, nodeName);
+                        firstLine = false;
+                    } else {
+                        tree->insert(nodevideoNb, nodeName);
+                    }
+                }
+                tree->display();
+                delete tree;
+                break;
+            }
+            case '4': {
+                cout << "Actress sorted by views: " << endl;
+                
+                ifstream input(DATA_SET_FILE);  // Moved inside the block
+                if (!input)
+                {
+                    cout << "Error: file \'" << DATA_SET_FILE << "\' doesn't exist or is not accessible" << endl;
+                    return 1;
+                }
+
+                bool firstLine = true;
+                Tree* tree = nullptr;
+                for (string line; getline(input, line);)
+                {
+                    size_t pos = 0;
+                    size_t tokenNb = 0;
+                    string token;
+                    string nodeName;
+                    int nodeRank;
+                    int nodevideoNb;
+                    unsigned long nodeviews;
+
+                    while ((pos = line.find(separator)) != std::string::npos || tokenNb < 4)
+                    {
+                        token = line.substr(0, pos);
+                        switch (tokenNb)
+                        {
+                        case 0:
+                            nodeName = token;
+                            break;
+                        case 1:
+                            nodeRank = stoi(token);
+                            break;
+                        case 2:
+                            nodevideoNb = stoi(token);
+                            break;
+                        case 3:
+                            nodeviews = stoul(token);
+                            break;
+                        default:
+                            break;
+                        }
+                        line.erase(0, pos + 1);
+                        ++tokenNb;
+                    }
+
+                    if (firstLine)
+                    {
+                        tree = new Tree(nodeviews, nodeName);
+                        firstLine = false;
+                    } else {
+                        tree->insert(nodeviews, nodeName);
+                    }
+                }
+                tree->display();
+                delete tree;
+                break;
+            }
             case 'q': {
                 cout << "Goodbye!" << endl;
                 return 0;
