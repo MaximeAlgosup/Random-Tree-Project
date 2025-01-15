@@ -35,7 +35,7 @@ int main()
         cout << "7. Search by number of views" << endl;
         cout << "8. Remove by rank" << endl;
         cout << "9. Remove by number of videos" << endl;
-        cout << "10. Remove by number of views" << endl;
+        cout << "0. Remove by number of views" << endl;
         cout << "q. Exit" << endl;
         cout << "------------------------------------------" << endl;
         cout << "Enter an option: ";
@@ -48,7 +48,7 @@ int main()
         string separator = ",";
         switch (option)
         {
-            case 1: {
+            case '1': {
                 cout << "List Actress: " << endl;
                 
                 ifstream input(DATA_SET_FILE);  // Moved inside the block
@@ -303,7 +303,7 @@ int main()
                 }
                 break;
             }
-            case '10': {
+            case '0': {
                 int viewNb;
                 cout << "------------------------------------------" << endl;
                 cout << "Enter a number of views: ";
