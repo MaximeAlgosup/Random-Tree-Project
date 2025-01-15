@@ -22,7 +22,6 @@ add_executable(randomTreeProject
 target_include_directories(randomTreeProject
   PRIVATE
   src/data-structure
-  src/formatted-data
   src
 )
 
