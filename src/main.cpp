@@ -4,7 +4,14 @@
     \author Mathias GAGNEPAIN, Maxime Carbon
 */
 
-int main()
+#include <iostream>
+
+using namespace std;
+
+#define DATA_SET_FILE "../formattedData/actressDataSet.csv"
+
+int main(void)
 {
+    
     return 0;
 }
