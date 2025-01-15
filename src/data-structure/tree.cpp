@@ -40,7 +40,7 @@ bool Tree::insert(int value, string name)
             }
             node = node->getLeft();
         }
-        else if (value > node->getData())
+        else if (value >= node->getData())
         {
             if (node->getRight() == NULL)
             {
@@ -79,6 +79,24 @@ Node *Tree::search(int value) const
     return NULL;
 }
 
+Node **Tree::searchAll(int value) const {
+    Node **nodes = new Node*[100];
+    Node *node = this->root;
+    int i = 0;
+    while(node != NULL){
+        if(value < node->getData()){
+            node = node->getLeft();
+        }else if(value > node->getData()){
+            node = node->getRight();
+        }else{
+            nodes[i] = node;
+            i++;
+            node = node->getRight();
+        }
+    }
+    return nodes;
+}
+
 Node *Tree::treeRemovePartial(Node *node, int value){
     if(node == NULL){
         return NULL;
@@ -115,6 +133,25 @@ bool Tree::remove(int value)
     }
     Node *node = this->root;
     this->root = treeRemovePartial(node, value);
+    return true;
+}
+
+bool Tree::removeAll(int value)
+{
+    if(this->search(value) == NULL){
+        return false;
+    }
+    Node *node = this->root;
+    while(node != NULL){
+        if(node->getData() == value){
+            this->root = treeRemovePartial(node, value);
+        }
+        if(value < node->getData()){
+            node = node->getLeft();
+        }else if(value > node->getData()){
+            node = node->getRight();
+        }
+    }
     return true;
 }
 

@@ -60,12 +60,27 @@ public:
     */
     Node *search(int value) const;
 
+
     /*!
-        \brief Removes a node from the tree.
+        \brief Searches for all nodes in the tree by their value.
+        \param value The value of the nodes to search for.
+        \return An array of pointers to the nodes if found, or nullptr if not found.
+    */
+    Node **searchAll(int value) const;
+
+    /*!
+        \brief Removes the first node which has a given value from the tree.
         \param value The value of the node to remove.
         \return True if the node is successfully removed, false otherwise.
     */
     bool remove(int value);
+
+    /*!
+        \brief Removes all nodes with a given value from the tree.
+        \param value The value of the nodes to remove.
+        \return True if the nodes are successfully removed, false otherwise.
+    */
+    bool removeAll(int value);
 
     /*!
         \brief Displays the tree structure to the console.
