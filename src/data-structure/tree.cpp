@@ -11,9 +11,9 @@
 
 using namespace std;
 
-Tree::Tree(int value)
+Tree::Tree(int value, string name)
 {
-    this->root = new Node(value);
+    this->root = new Node(value, name);
 }
 
 Tree::~Tree()
@@ -26,25 +26,25 @@ Node *Tree::getRoot() const
     return this->root;
 }
 
-bool Tree::insert(int value)
+bool Tree::insert(int value, string name)
 {
     Node *node = this->root;
     while (node != NULL)
     {
-        if (value < node->getValue())
+        if (value < node->getData())
         {
             if (node->getLeft() == NULL)
             {
-                node->setLeft(new Node(value));
+                node->setLeft(new Node(value, name));
                 return true;
             }
             node = node->getLeft();
         }
-        else if (value > node->getValue())
+        else if (value > node->getData())
         {
             if (node->getRight() == NULL)
             {
-                node->setRight(new Node(value));
+                node->setRight(new Node(value, name));
                 return true;
             }
             node = node->getRight();
@@ -57,16 +57,17 @@ bool Tree::insert(int value)
     return false;
 }
 
+
 Node *Tree::search(int value) const
 {
     Node *node = this->root;
     while (node != NULL)
     {
-        if (value < node->getValue())
+        if (value < node->getData())
         {
             node = node->getLeft();
         }
-        else if (value > node->getValue())
+        else if (value > node->getData())
         {
             node = node->getRight();
         }
@@ -82,9 +83,9 @@ Node *Tree::treeRemovePartial(Node *node, int value){
     if(node == NULL){
         return NULL;
     }
-    if(value < node->getValue()){
+    if(value < node->getData()){
         node->setLeft(treeRemovePartial(node->getLeft(), value));
-    }else if(value > node->getValue()){
+    }else if(value > node->getData()){
         node->setRight(treeRemovePartial(node->getRight(), value));
     }else{
         if(node->getLeft() == NULL){
@@ -100,8 +101,8 @@ Node *Tree::treeRemovePartial(Node *node, int value){
             while(min->getLeft() != NULL){
                 min = min->getLeft();
             }
-            node->setValue(min->getValue());
-            node->setRight(treeRemovePartial(node->getRight(), min->getValue()));
+            node->setValue(min->getData());
+            node->setRight(treeRemovePartial(node->getRight(), min->getData()));
         }
     }
     return node;
